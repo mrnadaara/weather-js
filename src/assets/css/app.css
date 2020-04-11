@@ -3,3 +3,14 @@
 body {
   font-family: 'Staatliches', cursive;
 }
+
+#content {
+  height: 100vh;
+  background: #300000;
+  background: linear-gradient(45deg, #2980B9, #6DD5FA, #FFFFFF);
+}
+
+.no-padding {
+  padding-left: 0;
+  padding-right: 0;
+}
