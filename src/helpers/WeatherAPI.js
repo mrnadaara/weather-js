@@ -5,7 +5,8 @@ const getWeather = async (city) => {
     `https://api.openweathermap.org/data/2.5/weather?id=${city}&appid=${key}`,
   );
   const result = await response.json();
-  console.log(result);
+
+  return result;
 };
 
 export { getWeather };
