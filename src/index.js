@@ -2,7 +2,8 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './assets/css/app.css';
 import Components from './components';
-// import { Splash, Weather } from './helpers';
+import City from './components/main/city';
+import { Splash, Weather } from './helpers';
 // import CityList from './assets/city.list.json';
 
 // const index = new FlexSearch({
@@ -26,5 +27,9 @@ import Components from './components';
 const content = new Components();
 content.render();
 
-// Splash.getImage('new york');
+Splash.getImage('paris').then(({ results }) => {
+  if (results.length !== 0) {
+    City.updateImage(`${results[0].urls.full}#${new Date().getTime()}`);
+  }
+});
 // Weather.getWeather(833);
