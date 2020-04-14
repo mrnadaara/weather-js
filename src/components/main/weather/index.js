@@ -5,8 +5,6 @@ export default class Weather {
     const container = DOMHelper.createElement('div', [
       'container-fluid',
       'no-padding',
-      'h-25',
-      'w-100',
       'no-gutter',
     ]);
     container.innerText = 'weather';

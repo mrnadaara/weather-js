@@ -27,9 +27,9 @@ import { Splash, Weather } from './helpers';
 const content = new Components();
 content.render();
 
-Splash.getImage('paris').then(({ results }) => {
+Splash.getImage('moscow').then(({ results }) => {
   if (results.length !== 0) {
-    City.updateImage(`${results[0].urls.full}#${new Date().getTime()}`);
+    // City.updateImage(`${results[0].urls.full}#${new Date().getTime()}`);
   }
 });
 // Weather.getWeather(833);

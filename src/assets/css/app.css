@@ -10,26 +10,37 @@ body {
   background: linear-gradient(45deg, #2980B9, #6DD5FA, #FFFFFF);
 }
 
+main {
+  width: 900px;
+  height: 300px;
+}
+
 .no-padding {
   padding-left: 0;
   padding-right: 0;
 }
 
-.landscape-container{
-  position: relative;
+.widthy {
+  max-width: 900px;
 }
 
-.landscape-image {
-  display: block;
+#landscape-container {
+  position:relative;
 }
 
-.landscape-container::before {
-  content: '';
+#landscape-image {
+  max-height: 100%;
+  max-width: 100%;
+  margin: auto;
   position: absolute;
   top: 0;
   left: 0;
   bottom: 0;
   right: 0;
+  z-index: 0;
+}
+
+.heading {
+  position: relative;
   z-index: 1;
-  background: rgba(0, 0, 0, .5);
 }

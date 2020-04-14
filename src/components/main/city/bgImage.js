@@ -1,3 +1,4 @@
+import ImagesLoaded from 'imagesloaded';
 import { DOMHelper } from '../../../helpers';
 import DefaultImage from '../../../assets/images/newyork.jpg';
 import Spinner from './spinner';
@@ -27,10 +28,15 @@ export default class BGImage {
     );
 
     const spinner = new Spinner().render();
+    // container.appendChild(spinner);
 
     img.style.visibility = 'hidden';
 
-    // container.appendChild(spinner);
+    const loadedImg = ImagesLoaded(img);
+    loadedImg.on('done', () => {
+      img.style.visibility = 'visible';
+      // img.parentNode.removeChild(spinner);
+    });
     container.appendChild(img);
 
     return container;

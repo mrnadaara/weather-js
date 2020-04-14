@@ -13,7 +13,7 @@ export default class Main {
       'container-fluid',
       'no-padding',
       'h-75',
-      'w-75',
+      'w-50',
       'rounded',
     ]);
     container.append(

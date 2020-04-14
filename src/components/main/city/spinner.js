@@ -4,7 +4,12 @@ export default class Spinner {
   render() {
     const container = DOMHelper.createElement(
       'div',
-      ['d-flex', 'justify-content-center', 'align-items-center', 'h-100'],
+      [
+        'd-flex',
+        'justify-content-center',
+        'align-items-center',
+        'h-100',
+      ],
       [{ prop: 'id', value: 'spinner' }],
     );
 
