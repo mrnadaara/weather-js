@@ -2,6 +2,7 @@ import ImagesLoaded from 'imagesloaded';
 import { DOMHelper } from '../../../helpers';
 import BGImage from './bgImage';
 import Spinner from './spinner';
+import Search from './search';
 
 export default class City {
   static updateImage(url) {
@@ -17,6 +18,18 @@ export default class City {
     });
   }
 
+  renderContent() {
+    const container = DOMHelper.createElement(
+      'div',
+      ['container-fluid', 'no-padding', 'h-100', 'w-100'],
+      [{ prop: 'id', value: 'landscape-content' }],
+    );
+    const form = new Search().render();
+    container.appendChild(form);
+
+    return container;
+  }
+
   render() {
     const container = DOMHelper.createElement('div', [
       'container-fluid',
@@ -26,11 +39,9 @@ export default class City {
       'bg-white',
       'rounded',
     ], [{ prop: 'id', value: 'city' }]);
-    const p = DOMHelper.createElement('p', ['heading']);
-    const bgImage = new BGImage().render();
 
-    p.textContent = 'HEEEEEEYYYYY';
-    bgImage.appendChild(p);
+    const bgImage = new BGImage().render();
+    bgImage.appendChild(this.renderContent());
     container.appendChild(bgImage);
 
     return container;

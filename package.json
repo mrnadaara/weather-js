@@ -38,6 +38,7 @@
     "webpack-dev-server": "^3.10.3"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-free": "^5.13.0",
     "bootstrap": "^4.4.1",
     "flexsearch": "^0.6.32",
     "imagesloaded": "^4.1.4",

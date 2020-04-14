@@ -40,7 +40,26 @@ main {
   z-index: 0;
 }
 
-.heading {
+#landscape-content {
   position: relative;
   z-index: 1;
+}
+
+::placeholder {
+    font-size: 30px;
+    line-height: 3;
+}
+
+.form-control:focus{
+  background: rgb(67, 67, 67, 0.5);
+}
+
+.form-control::-webkit-input-placeholder {
+  color: white;  
+}
+
+input[type='text'] {
+  font-size: 30px;
+  line-height: 3;
+  background-color: rgb(67, 67, 67, 0.5);
 }

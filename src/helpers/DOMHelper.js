@@ -1,7 +1,7 @@
 const createElement = (type, classes = null, attributes = null) => {
   const element = document.createElement(type);
   if (classes) {
-    classes.forEach(className => {
+    classes.forEach((className) => {
       element.classList.add(className);
     });
   }
