@@ -16,9 +16,14 @@ export default class Footer {
 
   renderNavItem({ title, link }) {
     const item = DOMHelper.createElement('li', ['nav-item']);
-    const anchor = DOMHelper.createElement('a', ['nav-link', 'text-white'], [
-      { prop: 'href', value: link },
-    ]);
+    const anchor = DOMHelper.createElement(
+      'a',
+      ['nav-link', 'text-white'],
+      [
+        { prop: 'href', value: link },
+        { prop: 'target', value: '_blank' },
+      ],
+    );
     anchor.textContent = title;
     item.appendChild(anchor);
 

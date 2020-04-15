@@ -9,14 +9,18 @@ export default class BGImage {
   }
 
   render() {
-    const container = DOMHelper.createElement('div', [
-      'no-padding',
-      'h-100',
-      'w-100',
-      'rounded',
-    ], [
-      { prop: 'id', value: 'landscape-container' },
-    ]);
+    const container = DOMHelper.createElement(
+      'div',
+      [
+        'no-padding',
+        'h-100',
+        'w-100',
+        'rounded-top',
+        'rounded-right',
+        'rounded-left',
+      ],
+      [{ prop: 'id', value: 'landscape-container' }],
+    );
 
     const img = DOMHelper.createElement(
       'img',

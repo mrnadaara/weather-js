@@ -14,7 +14,6 @@ export default class Main {
       'no-padding',
       'h-75',
       'w-50',
-      'rounded',
     ]);
     container.append(
       this.city.render(),

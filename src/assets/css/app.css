@@ -7,7 +7,7 @@ body {
 #content {
   height: 100vh;
   background: #300000;
-  background: linear-gradient(45deg, #2980B9, #6DD5FA, #FFFFFF);
+  background: linear-gradient(45deg, #2980b9, #6dd5fa, #ffffff);
 }
 
 main {
@@ -25,10 +25,10 @@ main {
 }
 
 #landscape-container {
-  position:relative;
+  position: relative;
 }
 
-#landscape-image {
+#landscape-image, #spinner {
   max-height: 100%;
   max-width: 100%;
   margin: auto;
@@ -46,20 +46,39 @@ main {
 }
 
 ::placeholder {
-    font-size: 30px;
-    line-height: 3;
+  font-size: 30px;
+  line-height: 3;
 }
 
-.form-control:focus{
+.form-control:focus {
   background: rgb(67, 67, 67, 0.5);
 }
 
 .form-control::-webkit-input-placeholder {
-  color: white;  
+  color: white;
 }
 
 input[type='text'] {
   font-size: 30px;
   line-height: 3;
   background-color: rgb(67, 67, 67, 0.5);
+}
+
+#suggestions {
+  position: relative;
+  top: 50px;
+}
+
+#suggestions div {
+  padding: 10px 0;
+  margin: 0 8px;
+  border-bottom: 1px solid #ddd;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  background-color: rgb(67, 67, 67, 0.5);
+}
+
+.weather {
+  background-color: rgb(67, 67, 67, 0.3);
 }
