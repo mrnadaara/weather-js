@@ -1,6 +1,14 @@
-import { DOMHelper } from '../../../helpers';
+import { DOMHelper } from '../../helpers';
 
 export default class Spinner {
+  constructor(type) {
+    if (type) {
+      this.type = type;
+    } else {
+      this.type = '';
+    }
+  }
+
   render() {
     const container = DOMHelper.createElement(
       'div',
@@ -10,7 +18,7 @@ export default class Spinner {
         'align-items-center',
         'h-100',
       ],
-      [{ prop: 'id', value: 'spinner' }],
+      [{ prop: 'id', value: `spinner${this.type}` }],
     );
 
     const innerContainer = DOMHelper.createElement(

@@ -1,7 +1,7 @@
 import ImagesLoaded from 'imagesloaded';
 import { DOMHelper } from '../../../helpers';
 import BGImage from './bgImage';
-import Spinner from './spinner';
+import Spinner from '../spinner';
 import Search from './search';
 
 export default class City {

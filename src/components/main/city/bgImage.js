@@ -1,7 +1,7 @@
 import ImagesLoaded from 'imagesloaded';
 import { DOMHelper } from '../../../helpers';
 import DefaultImage from '../../../assets/images/moga.jpg';
-import Spinner from './spinner';
+import Spinner from '../spinner';
 
 export default class BGImage {
   constructor() {

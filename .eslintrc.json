@@ -18,7 +18,6 @@
     "arrow-parens": "off",
     "no-plusplus": "off",
     "no-multi-assign": "off",
-    "import/prefer-default-export": "off",
-    "": "off",
+    "import/prefer-default-export": "off"
   }
 }

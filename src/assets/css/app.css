@@ -28,7 +28,7 @@ main {
   position: relative;
 }
 
-#landscape-image, #spinner {
+#landscape-image, #spinner, #spinnerweather, #error {
   max-height: 100%;
   max-width: 100%;
   margin: auto;
@@ -81,4 +81,8 @@ input[type='text'] {
 
 .weather {
   background-color: rgb(67, 67, 67, 0.3);
+}
+
+.error {
+  font-size: 30px;
 }

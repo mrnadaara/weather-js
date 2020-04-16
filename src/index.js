@@ -8,6 +8,7 @@ import '@fortawesome/fontawesome-free/js/brands';
 import './assets/css/app.css';
 import Components from './components';
 import City from './components/main/city';
+import WeatherComponent from './components/main/weather';
 import { Splash, Weather, DOMHelper } from './helpers';
 import CityList from './assets/city.list.json';
 
@@ -70,13 +71,21 @@ const initializeAutocomplete = () => {
   function searchCity(e) {
     e.preventDefault();
 
+
+
+    WeatherComponent.showSpinner();
+    while (suggestions.lastChild) {
+      suggestions.removeChild(suggestions.lastChild);
+    }
+
     const city = cityId.value === '' ? userinput.value : Number(cityId.value);
     const image = Splash.getImage(userinput.value);
     const weather = Weather.getWeather(city, cityId.value !== '');
 
     Promise.all([weather, image]).then(
       (results) => {
-        // const weatherResult = results[0];
+        const weatherResult = results[0];
+        WeatherComponent.updateWeather(weatherResult);
         const imageResult = results[1].results;
         if (imageResult.length !== 0) {
           City.updateImage(
@@ -85,9 +94,11 @@ const initializeAutocomplete = () => {
         }
       },
       (err) => {
-        // console.log(err);
+        WeatherComponent.showError(err);
       },
     );
+
+    cityId.value = '';
   }
 
   userinput.addEventListener('input', showResults, true);
@@ -100,11 +111,14 @@ content.render();
 
 if (document.readyState === 'complete') {
   initializeAutocomplete();
-  // Weather.getWeather(53654, true).then((result) => {
-  //   console.log(result);
-  // });
+  Weather.getWeather(53654, true).then((result) => {
+    WeatherComponent.updateWeather(result);
+  });
 } else {
   window.addEventListener('load', () => {
     initializeAutocomplete();
+    Weather.getWeather(53654, true).then((result) => {
+      WeatherComponent.updateWeather(result);
+    });
   });
 }
