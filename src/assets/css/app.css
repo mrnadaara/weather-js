@@ -86,3 +86,7 @@ input[type='text'] {
 .error {
   font-size: 30px;
 }
+
+#city-name {
+  background-color: rgb(67, 67, 67, 0.7);
+}

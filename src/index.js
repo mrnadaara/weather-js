@@ -16,11 +16,17 @@ const index = new FlexSearch({
   encode: 'icase',
   tokenize: 'full',
   cache: true,
+  doc: {
+    id: 'id',
+    field: 'name',
+  },
 });
 
-for (let i = 0; i < CityList.length; i++) {
-  index.add(i, CityList[i].name);
-}
+// for (let i = 0; i < CityList.length; i++) {
+//   index.add(i, CityList[i].name);
+// }
+
+index.add(CityList);
 
 const initializeAutocomplete = () => {
   const suggestions = document.getElementById('suggestions');
@@ -30,7 +36,12 @@ const initializeAutocomplete = () => {
 
   function showResults() {
     const { value } = this;
-    const results = index.search(value, 5);
+    const results = index.search({
+      limit: 5,
+      query: value,
+      field: 'name',
+      suggest: true,
+    });
     let entry = suggestions.childNodes;
     const childs = suggestions.childNodes;
     let i = 0;
@@ -44,8 +55,8 @@ const initializeAutocomplete = () => {
         suggestions.appendChild(entry);
       }
 
-      entry.textContent = CityList[results[i]].name;
-      entry.id = CityList[results[i]].id;
+      entry.textContent = `${results[i].name}, ${results[i].country}`;
+      entry.id = results[i].id;
     }
 
     while (childs.length > len) {
@@ -71,15 +82,14 @@ const initializeAutocomplete = () => {
   function searchCity(e) {
     e.preventDefault();
 
-
-
     WeatherComponent.showSpinner();
     while (suggestions.lastChild) {
       suggestions.removeChild(suggestions.lastChild);
     }
 
     const city = cityId.value === '' ? userinput.value : Number(cityId.value);
-    const image = Splash.getImage(userinput.value);
+    const imageSearch = cityId.value === '' ? userinput.value : userinput.value.match(/\w+/);
+    const image = Splash.getImage(imageSearch);
     const weather = Weather.getWeather(city, cityId.value !== '');
 
     Promise.all([weather, image]).then(
