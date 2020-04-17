@@ -22,10 +22,6 @@ const index = new FlexSearch({
   },
 });
 
-// for (let i = 0; i < CityList.length; i++) {
-//   index.add(i, CityList[i].name);
-// }
-
 index.add(CityList);
 
 const initializeAutocomplete = () => {
