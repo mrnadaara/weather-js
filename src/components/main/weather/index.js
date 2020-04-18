@@ -10,10 +10,26 @@ export default class Weather {
     return { f, c };
   }
 
-  static updateWeather({name, main, weather}) {
+  static toggleDegree(active, prev) {
+    const degreeInfo = document.getElementById('degree-info');
+    const button = document.getElementById(`${active}-toggle`);
+    const prevButton = document.getElementById(`${prev}-toggle`);
+
+    button.classList.remove('btn-secondary');
+    button.classList.add('btn-primary');
+
+    prevButton.classList.remove('btn-primary');
+    prevButton.classList.add('btn-secondary');
+
+    degreeInfo.firstChild.textContent = `${button.data}°`;
+    degreeInfo.lastChild.textContent = active;
+  }
+
+  static updateWeather({ name, main, weather }) {
     const { f, c } = this.convertKelvin(main.temp);
-    const fahrenheit = document.getElementById('fahrenheit');
-    const celsius = document.getElementById('celsius');
+    const degreeInfo = document.getElementById('degree-info');
+    const fahrenheitToggle = document.getElementById('fahrenheit-toggle');
+    const celsiusToggle = document.getElementById('celsius-toggle');
     const city = document.getElementById('city-name');
     const degree = document.getElementById('degree');
     const spinner = document.getElementById('spinnerweather');
@@ -22,8 +38,12 @@ export default class Weather {
     const weatherInfo = document.getElementById('weather-desc');
 
     city.textContent = name;
-    fahrenheit.firstChild.textContent = `${f}°`;
-    celsius.firstChild.textContent = `${c}°`;
+    degreeInfo.firstChild.textContent = `${c}°`;
+    degreeInfo.lastChild.textContent = 'celsius';
+
+    fahrenheitToggle.data = f.toString();
+    celsiusToggle.data = c.toString();
+
     weatherInfo.textContent = weather[0].description;
     weatherIcon.src = `http://openweathermap.org/img/wn/${
       weather[0].icon
@@ -55,20 +75,39 @@ export default class Weather {
     spinner.parentNode.removeChild(spinner);
   }
 
-  renderDegree(type) {
+  renderDegree() {
     const container = DOMHelper.createElement(
       'div',
       ['h-100'],
-      [{ prop: 'id', value: type }],
+      [{ prop: 'id', value: 'degree-info' }],
     );
 
     const degree = DOMHelper.createElement('h2');
     const typeElement = DOMHelper.createElement('h2');
-
-    typeElement.textContent = type;
     container.append(degree, typeElement);
 
     return container;
+  }
+
+  renderToggleButton(active, type, symbol) {
+    const button = DOMHelper.createElement(
+      'button',
+      ['btn'],
+      [
+        { prop: 'id', value: `${type}-toggle` },
+        { prop: 'data', value: '0' },
+      ],
+    );
+
+    if (active) {
+      button.classList.add('btn-primary');
+    } else {
+      button.classList.add('btn-secondary');
+    }
+
+    button.textContent = symbol;
+
+    return button;
   }
 
   renderDegreeContainer() {
@@ -88,19 +127,30 @@ export default class Weather {
       ['text-center', 'rounded', 'text-white', 'p-1'],
       [{ prop: 'id', value: 'city-name' }],
     );
-    const innerContainer = DOMHelper.createElement('div', [
+    const toggleDegree = DOMHelper.createElement('div', [
       'd-flex',
       'justify-content-between',
+    ]);
+    const titleContainer = DOMHelper.createElement('div', [
+      'd-flex',
+      'justify-content-between',
+      'w-100',
+    ]);
+    const innerContainer = DOMHelper.createElement('div', [
+      'd-flex',
+      'justify-content-start',
       'align-items-center',
       'w-100',
       'h-50',
     ]);
-    const fahrenheit = this.renderDegree('fahrenheit');
-    const celsius = this.renderDegree('celsius');
+    const fahrenheitToggle = this.renderToggleButton(false, 'fahrenheit', 'F°');
+    const celsiusToggle = this.renderToggleButton(true, 'celsius', 'C°');
 
     container.style.visibility = 'hidden';
-    innerContainer.append(fahrenheit, celsius);
-    container.append(cityName, innerContainer);
+    toggleDegree.append(celsiusToggle, fahrenheitToggle);
+    titleContainer.append(cityName, toggleDegree);
+    innerContainer.append(this.renderDegree());
+    container.append(titleContainer, innerContainer);
 
     return container;
   }

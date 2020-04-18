@@ -112,17 +112,27 @@ const initializeAutocomplete = () => {
   form.addEventListener('submit', searchCity, true);
 };
 
+const initializeToggle = () => {
+  const fahrenheitToggle = document.getElementById('fahrenheit-toggle');
+  const celsiusToggle = document.getElementById('celsius-toggle');
+
+  fahrenheitToggle.addEventListener('click', () => WeatherComponent.toggleDegree('fahrenheit', 'celsius'));
+  celsiusToggle.addEventListener('click', () => WeatherComponent.toggleDegree('celsius', 'fahrenheit'));
+};
+
 const content = new Components();
 content.render();
 
 if (document.readyState === 'complete') {
   initializeAutocomplete();
+  initializeToggle();
   Weather.getWeather(53654, true).then((result) => {
     WeatherComponent.updateWeather(result);
   });
 } else {
   window.addEventListener('load', () => {
     initializeAutocomplete();
+    initializeToggle();
     Weather.getWeather(53654, true).then((result) => {
       WeatherComponent.updateWeather(result);
     });
