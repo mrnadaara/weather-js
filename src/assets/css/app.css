@@ -1,0 +1,92 @@
+@import url('https://fonts.googleapis.com/css2?family=Staatliches&display=swap');
+
+body {
+  font-family: 'Staatliches', cursive;
+}
+
+#content {
+  height: 100vh;
+  background: #300000;
+  background: linear-gradient(45deg, #2980b9, #6dd5fa, #ffffff);
+}
+
+main {
+  width: 900px;
+  height: 300px;
+}
+
+.no-padding {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.widthy {
+  max-width: 900px;
+}
+
+#landscape-container {
+  position: relative;
+}
+
+#landscape-image, #spinner, #spinnerweather, #error {
+  max-height: 100%;
+  max-width: 100%;
+  margin: auto;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 0;
+}
+
+#landscape-content {
+  position: relative;
+  z-index: 1;
+}
+
+::placeholder {
+  font-size: 30px;
+  line-height: 3;
+}
+
+.form-control:focus {
+  background: rgb(67, 67, 67, 0.5);
+}
+
+.form-control::-webkit-input-placeholder {
+  color: white;
+}
+
+input[type='text'] {
+  font-size: 30px;
+  line-height: 3;
+  background-color: rgb(67, 67, 67, 0.5);
+}
+
+#suggestions {
+  position: relative;
+  top: 50px;
+}
+
+#suggestions div {
+  padding: 10px 0;
+  margin: 0 8px;
+  border-bottom: 1px solid #ddd;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  background-color: rgb(67, 67, 67, 0.5);
+}
+
+.weather {
+  background-color: rgb(67, 67, 67, 0.3);
+}
+
+.error {
+  font-size: 30px;
+}
+
+#city-name {
+  background-color: rgb(67, 67, 67, 0.7);
+}
